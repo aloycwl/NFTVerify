@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       button {
+        font-weight: bold;
         height: 100px;
+        width: 100%;
       }
     </style>
 
@@ -15,9 +17,14 @@
   <body>
     <h1>Member of:</h1>
     <button
-      onclick="load('0xD120D29947BCb41812Dc6e7AbA2782E7c8237F36','The Woobeing Club (TWC)')"
+      onclick="load('0xD120D29947BCb41812Dc6e7AbA2782E7c8237F36',this.innerHTML)"
     >
-      The Woobeing Club (TWC)
+      The Woobeing Club (TWC)</button
+    ><br /><br />
+    <button
+      onclick="load('0xD120D29947BCb41812Dc6e7AbA2782E7c8237F36',this.innerHTML)"
+    >
+      Radiant Enclave
     </button>
     <script>
       async function load(p1, p2) {
