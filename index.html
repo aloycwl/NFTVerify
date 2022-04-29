@@ -22,7 +22,7 @@
       The Woobeing Club (TWC)</button
     ><br /><br />
     <button
-      onclick="load('0xD120D29947BCb41812Dc6e7AbA2782E7c8237F36',this.innerHTML)"
+      onclick="load('0x72E4c656a7121370d5A26d9b72eAC140F3A37469',this.innerHTML)"
     >
       Radiant Enclave
     </button>
@@ -45,13 +45,14 @@
         count = await contract.methods.balanceOf(acct[0]).call();
 
         document.write(
-          count > 0
+          (count > 0
             ? `${
                 acct[0]
               } is a member of <b>${p2}</b><br><br>Access granted on<br><br>${moment().format(
                 'dddd h:mma D MMM YY'
               )}`
-            : `You do not have any token with us.`
+            : `You do not have any token with us.`) +
+            `<br><br><a href="#" onclick="location.reload()">back</a>`
         );
       }
     </script>
