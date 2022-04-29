@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Wooing Club (TWC)</title>
+    <style></style>
+
+    <script src="https://aloycwl.github.io/js/cdn/web3.min.js"></script>
+    <script defer src="https://aloycwl.github.io/js/cdn/moment.min.js"></script>
+  </head>
+  <body>
+    <h1>Member of:</h1>
+    <button
+      onclick="load('0xD120D29947BCb41812Dc6e7AbA2782E7c8237F36','The Woobeing Club (TWC)')"
+    >
+      The Woobeing Club (TWC)
+    </button>
+    <script>
+      async function load(p1, p2) {
+        acct = await ethereum.request({ method: 'eth_requestAccounts' });
+        web3 = new Web3(ethereum);
+        contract = new web3.eth.Contract(
+          [
+            {
+              constant: true,
+              inputs: [{ name: '', type: 'address' }],
+              name: 'balanceOf',
+              outputs: [{ name: '', type: 'uint256' }],
+              type: 'function',
+            },
+          ],
+          p1
+        );
+        count = await contract.methods.balanceOf(acct[0]).call();
+
+        document.write(
+          count > 0
+            ? `${
+                acct[0]
+              } is a member of <b>${p2}</b><br><br>Access granted on<br><br>${moment().format(
+                'dddd h:mma D MMM YY'
+              )}`
+            : `You do not have any token with us.`
+        );
+      }
+    </script>
+  </body>
+</html>
