@@ -6,6 +6,7 @@
     <style>
       body {
         background: #eeeeee;
+        font-family: tahoma;
       }
       button {
         background-color: #ffffff;
@@ -23,8 +24,13 @@
       }
       .header {
         height: 100px;
-        padding-top: 75px;
+        padding-top: 60px;
+      }
+      .pass {
         background-color: #00ee00;
+      }
+      .fail {
+        background-color: #ee0000;
       }
     </style>
     <script src="https://aloycwl.github.io/js/cdn/jquery.min.js"></script>
@@ -77,11 +83,12 @@
         CA2 = p1;
         load2();
         count = await contract2.balanceOf(acct).call();
-        $('body')
-          .html(`<div class="full"><div class="header">TWC merchant pass</div>
+        $('body').html(`<div class="full"><h2 class="header ${
+          count > 0 ? `pass` : `fail`
+        }">TWC merchant pass</h2>
           ${
             count > 0
-              ? `${acct} is a member of <b>${
+              ? `CHECK-IN SUCCESSFUL<br><br>${acct} is a member of <b>${
                   p2.innerHTML
                 }</b><br><br>Access granted on<br><br>${moment().format(
                   'dddd h:mma D MMM YY'
