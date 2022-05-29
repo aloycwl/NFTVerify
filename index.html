@@ -54,27 +54,39 @@
       The Wooti Baba (TWB)
     </button>
     <script>
-      load('', '');
+      CHAIN = 4;
+      CSS = 'https://aloycwl.github.io/merchant/css/merchant.css';
+      load(
+        [
+          {
+            inputs: [u3],
+            name: 'balanceOf',
+            outputs: [u1],
+            stateMutability: 'view',
+            type: 'function',
+          },
+        ],
+        '0xD120D29947BCb41812Dc6e7AbA2782E7c8237F36'
+      );
       async function display(p1, p2) {
-        acct = await ethereum.request({ method: 'eth_requestAccounts' });
         web3 = new Web3(ethereum);
         contract = new web3.eth.Contract(
           [
             {
-              constant: true,
-              inputs: [{ name: '', type: 'address' }],
+              inputs: [u3],
               name: 'balanceOf',
-              outputs: [{ name: '', type: 'uint256' }],
+              outputs: [u1],
+              stateMutability: 'view',
               type: 'function',
             },
           ],
           p1
         );
-        count = await contract.methods.balanceOf(acct[0]).call();
+        count = await contract.methods.balanceOf(acct).call();
 
         document.write(
           (count > 0
-            ? `${acct[0]} is a member of <b>${
+            ? `${acct} is a member of <b>${
                 p2.innerHTML
               }</b><br><br>Access granted on<br><br>${moment().format(
                 'dddd h:mma D MMM YY'
