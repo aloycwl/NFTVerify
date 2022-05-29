@@ -7,6 +7,7 @@
       body {
         background: #eeeeee;
         font-family: tahoma;
+        line-height: 2;
       }
       button {
         background-color: #ffffff;
@@ -22,15 +23,25 @@
         text-align: center;
         font-size: larger;
       }
-      .header {
+      h2 {
         height: 100px;
-        padding-top: 60px;
+        padding-top: 50px;
       }
       .pass {
         background-color: #00ee00;
       }
       .fail {
         background-color: #ee0000;
+      }
+      a {
+        display: block;
+        width: 100%;
+        padding: 10px 0 10px 0;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      i {
+        font-size: large;
       }
     </style>
     <script src="https://aloycwl.github.io/js/cdn/jquery.min.js"></script>
@@ -83,19 +94,21 @@
         CA2 = p1;
         load2();
         count = await contract2.balanceOf(acct).call();
-        $('body').html(`<div class="full"><h2 class="header ${
+        $('body').html(`<div class="full"><h2 class="${
           count > 0 ? `pass` : `fail`
-        }">TWC merchant pass</h2>
+        }">TWC Merchant Pass</h2>
           ${
             count > 0
-              ? `CHECK-IN SUCCESSFUL<br><br>${acct} is a member of <b>${
+              ? `VERIFIED SUCCESSFULLY<br><h3>${moment().format(
+                  'dddd D MMM YY h:mma'
+                )}</h3><b>${
                   p2.innerHTML
-                }</b><br><br>Access granted on<br><br>${moment().format(
-                  'dddd h:mma D MMM YY'
-                )}`
-              : `You do not have any token with us.`
+                }</b><p class="pass">Ordinary Member (15% discount)</p>`
+              : `VERIFIED UNSUCCESSFULLY<br><br>You are not a member of<br><br><b>${p2.innerHTML}</b><br><br>Please acquire this NFT or click "Back" to reselect<br><br>`
           }
-            <br><br><a href="#" onclick="location.reload()">back</a></div>`);
+          <i>${acct}</i><br><br><a onclick="location.reload()"class="${
+          count > 0 ? `pass` : `fail`
+        }">Back</a></div>`);
       }
     </script>
   </body>
