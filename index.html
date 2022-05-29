@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>The Wooing Club (TWC)</title>
+    <title>TWC Merchants</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       button {
         font-weight: bold;
         height: 100px;
         width: 100%;
+        margin-bottom: 20px;
       }
     </style>
-
+    <script src="https://aloycwl.github.io/js/cdn/jquery.min.js"></script>
+    <script src="https://aloycwl.github.io/js/cdn/moment.min.js"></script>
     <script src="https://aloycwl.github.io/js/cdn/web3.min.js"></script>
-    <script defer src="https://aloycwl.github.io/js/cdn/moment.min.js"></script>
+    <script src="https://aloycwl.github.io/js/cdn/web3ac.js"></script>
   </head>
   <body>
     <h1>Member of:</h1>
     <button
-      onclick="load('0xD120D29947BCb41812Dc6e7AbA2782E7c8237F36',this.innerHTML)"
+      onclick="display('0xD120D29947BCb41812Dc6e7AbA2782E7c8237F36',this)"
     >
-      The Woobeing Club (TWC)</button
-    ><br /><br />
+      The Woobeing Club (TWC)
+    </button>
     <button
-      onclick="load('0x72E4c656a7121370d5A26d9b72eAC140F3A37469',this.innerHTML)"
+      onclick="display('0x72E4c656a7121370d5A26d9b72eAC140F3A37469',this)"
     >
       The Wellbeing Group (TWG)
     </button>
+    <button
+      onclick="display('0x72E4c656a7121370d5A26d9b72eAC140F3A37469',this)"
+    >
+      The Withdrawn Association (TWA)
+    </button>
+    <button
+      onclick="display('0x72E4c656a7121370d5A26d9b72eAC140F3A37469',this)"
+    >
+      The Wellington Society (TWS)
+    </button>
+    <button
+      onclick="display('0x72E4c656a7121370d5A26d9b72eAC140F3A37469',this)"
+    >
+      The Winning Fight (TWF)
+    </button>
+    <button
+      onclick="display('0x72E4c656a7121370d5A26d9b72eAC140F3A37469',this)"
+    >
+      The Wolf Gang (TWG)
+    </button>
+    <button
+      onclick="display('0x72E4c656a7121370d5A26d9b72eAC140F3A37469',this)"
+    >
+      The Wooti Baba (TWB)
+    </button>
     <script>
-      async function load(p1, p2) {
+      load('', '');
+      async function display(p1, p2) {
         acct = await ethereum.request({ method: 'eth_requestAccounts' });
         web3 = new Web3(ethereum);
         contract = new web3.eth.Contract(
@@ -46,9 +74,9 @@
 
         document.write(
           (count > 0
-            ? `${
-                acct[0]
-              } is a member of <b>${p2}</b><br><br>Access granted on<br><br>${moment().format(
+            ? `${acct[0]} is a member of <b>${
+                p2.innerHTML
+              }</b><br><br>Access granted on<br><br>${moment().format(
                 'dddd h:mma D MMM YY'
               )}`
             : `You do not have any token with us.`) +
