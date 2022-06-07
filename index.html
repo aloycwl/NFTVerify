@@ -70,8 +70,8 @@
       load2();
       count = await contract2.balanceOf(acct).call();
     }
+    loadBtns();
     (async () => {
-      loadBtns();
       await load([], '');
       colorBtns();
     })();
