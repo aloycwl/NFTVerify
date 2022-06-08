@@ -44,12 +44,14 @@
     }
     async function colorBtns() {
       for (i = 0; i < j; i++) {
-        if (CA.length < 1) {
+        if (typeof loaded == 'undefined') {
           await getCount(i);
           CA.push(count);
+          console.log('count');
         }
         $('#b' + i).css('background-color', CA[i] > 0 ? '#eeffee' : '#ffeeee');
       }
+      loaded = 1;
     }
     async function display(p1) {
       await getCount(p1);
