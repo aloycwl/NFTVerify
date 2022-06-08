@@ -11,6 +11,7 @@
   <script>
     _LJS(0);
     CHAIN = 1;
+    CA = new Array();
     CS = 'https://aloycwl.github.io/merchant/css/merchant.css';
     c = {
       0: {
@@ -43,8 +44,11 @@
     }
     async function colorBtns() {
       for (i = 0; i < j; i++) {
-        await getCount(i);
-        $('#b' + i).css('background-color', count > 0 ? '#eeffee' : '#ffeeee');
+        if (CA.length < 1) {
+          await getCount(i);
+          CA.push(count);
+        }
+        $('#b' + i).css('background-color', CA[i] > 0 ? '#eeffee' : '#ffeeee');
       }
     }
     async function display(p1) {
