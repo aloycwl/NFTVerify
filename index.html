@@ -47,7 +47,6 @@
         if (typeof loaded == 'undefined') {
           await getCount(i);
           CA.push(count);
-          console.log('count');
         }
         $('#b' + i).css('background-color', CA[i] > 0 ? '#eeffee' : '#ffeeee');
       }
