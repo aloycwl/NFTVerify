@@ -17,7 +17,7 @@
       }
       async function loadAdd() {
         $('#main').html(
-          `<div class="center"><input id="txtAddr"placeholder="Enter contract address here"><br><br><button onclick="submit()">Submit</button><a id="added"></a></div>`
+          `<div class="center"><input id="txtAddr"placeholder="Enter contract address here (0x......)"><br><br><button onclick="submit()">Submit</button><a id="added"></a></div>`
         );
       }
       async function loadMerchant() {
@@ -72,6 +72,7 @@
         border: 0;
         outline: 0;
         background-color: #eeeeee;
+        font-family: tahoma;
       }
       ul {
         position: fixed;
