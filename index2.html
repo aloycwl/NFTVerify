@@ -17,14 +17,15 @@
       }
       async function loadAdd() {
         $('#main').html(
-          `<input id="txtAddr"placeholder="Enter contract address here"><br><br><button onclick="submit()">Submit</button>`
+          `<input id="txtAddr"placeholder="Enter contract address here"><br><br><button onclick="submit()">Submit</button><a id="added"></a>`
         );
       }
       async function loadMerchant() {
         $('#main').html('Merchant backend (e.g. for discount)');
       }
       async function submit() {
-        console.log($('#txtAddr').val());
+        await contract.addremoveClubs($('#txtAddr').val()).send(FA);
+        $('#added').html('<br><br>Operation successful');
       }
       _LJS(0);
       CHAIN = 4;
