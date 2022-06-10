@@ -11,17 +11,64 @@
         $('#main').html('Load own nft clubs');
       }
       async function loadAll() {
-        $('#main').html('Load all nft clubs');
+        $('#main')
+          .html(`Add new clubs<br>Contract name<br>https://testnets-api.opensea.io/api/v1/asset_contract/0x2b0793e2da6142b7c6fababe53fbe227b48fc9da?format=json<br>
+          Discount<br>Validity<br>`);
       }
       async function loadAdd() {
         $('#main').html(
-          `Add new clubs<br>Contract name<br>https://testnets-api.opensea.io/api/v1/asset_contract/0x2b0793e2da6142b7c6fababe53fbe227b48fc9da?format=json<br>
-          Discount<br>Validity<br>`
+          `<input id="txtAddr"placeholder="Enter contract address here"><br><br><button onclick="submit()">Submit</button>`
         );
       }
       async function loadMerchant() {
         $('#main').html('Merchant backend (e.g. for discount)');
       }
+      async function submit() {
+        console.log($('#txtAddr').val());
+      }
+      _LJS(0);
+      CHAIN = 4;
+      (async () => {
+        await load(
+          [
+            {
+              inputs: [u3],
+              name: 'addremoveClubs',
+              outputs: [],
+              stateMutability: 'nonpayable',
+              type: 'function',
+            },
+            {
+              inputs: [u1],
+              name: 'clubs',
+              outputs: [
+                {
+                  internalType: 'address',
+                  name: '',
+                  type: 'address',
+                },
+              ],
+              stateMutability: 'view',
+              type: 'function',
+            },
+            {
+              inputs: [],
+              name: 'getClubs',
+              outputs: [u4],
+              stateMutability: 'view',
+              type: 'function',
+            },
+            {
+              inputs: [],
+              name: 'getOwned',
+              outputs: [u4, u2],
+              stateMutability: 'view',
+              type: 'function',
+            },
+          ],
+          ''
+        );
+      })();
     </script>
     <style>
       * {
@@ -58,6 +105,12 @@
       }
       #a4 {
         background-position: -90px 0;
+      }
+      input,
+      button {
+        height: 50px;
+        font-size: larger;
+        width: 100%;
       }
     </style>
   </head>
