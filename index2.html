@@ -17,7 +17,7 @@
       }
       async function loadAdd() {
         $('#main').html(
-          `<input id="txtAddr"placeholder="Enter contract address here"><br><br><button onclick="submit()">Submit</button><a id="added"></a>`
+          `<div class="center"><input id="txtAddr"placeholder="Enter contract address here"><br><br><button onclick="submit()">Submit</button><a id="added"></a></div>`
         );
       }
       async function loadMerchant() {
@@ -61,7 +61,7 @@
               type: 'function',
             },
           ],
-          ''
+          '0x4C3dcf25838D5F608Ace1d4Bbd196Ef21C3c7163'
         );
       })();
     </script>
@@ -69,6 +69,8 @@
       * {
         margin: 0;
         padding: 0;
+        border: 0;
+        outline: 0;
         background-color: #eeeeee;
       }
       ul {
@@ -106,6 +108,10 @@
         height: 50px;
         font-size: larger;
         width: 100%;
+        background-color: white;
+      }
+      button {
+        cursor: pointer;
       }
     </style>
   </head>
