@@ -73,7 +73,7 @@
     async function getCount(p1) {
       CA2 = c[p1][1];
       load2();
-      count = await contract2.balanceOf(acct).call();
+      count = await contract2.methods.balanceOf(acct).call();
     }
     (async () => {
       loadBtns();
