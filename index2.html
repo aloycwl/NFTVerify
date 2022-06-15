@@ -9,13 +9,25 @@
     <script>
       async function loadOwn() {
         clubs = await contract.methods.getOwned(acct).call();
-        $('#main').html(clubs);
+        $('#main').html(clubs.toString());
       }
       async function loadAll() {
+        $('#main').html('');
         clubs = await contract.methods.getClubs().call();
-        $('#main').html(clubs);
+        for (i = 0; i < clubs.length; i++)
+          dd = await $.getJSON(
+            `https://testnets-api.opensea.io/api/v1/asset_contract/${clubs[i]}?format=json`,
+            function (d) {
+              $('#main').append(
+                d.collection.name + ' ' + d.collection.image_url == null
+                  ? 'https://openseauserdata.com/files/2eeb0a5ce789d2f7527ed6847e81805d.jpg'
+                  : d.collection.image_url
+              );
+            }
+          );
+
         /*$('#main')
-          .html(`Add new clubs<br>Contract name<br>https://testnets-api.opensea.io/api/v1/asset_contract/0x2b0793e2da6142b7c6fababe53fbe227b48fc9da?format=json<br>
+          .html(`Add new clubs<br>Contract name<br><br>
           Discount<br>Validity<br>`);*/
       }
       async function loadAdd(p1) {
@@ -41,13 +53,7 @@
         await load(
           [
             {
-              inputs: [
-                {
-                  internalType: 'address',
-                  name: 'a',
-                  type: 'address',
-                },
-              ],
+              inputs: [u3],
               name: 'addremoveClubs',
               outputs: [],
               stateMutability: 'nonpayable',
@@ -61,9 +67,9 @@
               type: 'function',
             },
             {
-              inputs: [],
+              inputs: [u3],
               name: 'getOwned',
-              outputs: [u3, u2],
+              outputs: [u4, u2],
               stateMutability: 'view',
               type: 'function',
             },
