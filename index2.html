@@ -12,23 +12,22 @@
         $('#main').html(clubs.toString());
       }
       async function loadAll() {
-        $('#main').html('');
+        $('#main').html('<div id="box"></div>');
         clubs = await contract.methods.getClubs().call();
         for (i = 0; i < clubs.length; i++)
           dd = await $.getJSON(
             `https://testnets-api.opensea.io/api/v1/asset_contract/${clubs[i]}?format=json`,
             function (d) {
-              $('#main').append(
-                d.collection.name + ' ' + d.collection.image_url == null
+              img = d.collection.image_url;
+              img =
+                img == null
                   ? 'https://openseauserdata.com/files/2eeb0a5ce789d2f7527ed6847e81805d.jpg'
-                  : d.collection.image_url
+                  : img;
+              $('#box').append(
+                `<div><a href="https://testnets.opensea.io/collection/${d.collection.slug}"target="_blank"><img src="${img}"><p>${d.collection.name}</p></a></div>`
               );
             }
           );
-
-        /*$('#main')
-          .html(`Add new clubs<br>Contract name<br><br>
-          Discount<br>Validity<br>`);*/
       }
       async function loadAdd(p1) {
         $('#main').html(
@@ -117,7 +116,6 @@
       #a4 {
         background-position: -90px 0;
       }
-
       input,
       button {
         height: 50px;
@@ -127,6 +125,15 @@
       }
       button {
         cursor: pointer;
+      }
+      #box div {
+        display: inline-block;
+        width: 24%;
+        text-align: center;
+      }
+      #box img {
+        width: 200px;
+        height: 200px;
       }
     </style>
   </head>
