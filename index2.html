@@ -8,8 +8,22 @@
     <script src="https://aloycwl.github.io/js/cdn/web3ac.js"></script>
     <script>
       async function loadOwn() {
+        $('#main').html('<div id="box"></div>');
         clubs = await contract.methods.getOwned(acct).call();
-        $('#main').html(clubs.toString());
+        for (i = 0; i < clubs[0].length; i++)
+          dd = await $.getJSON(
+            `https://testnets-api.opensea.io/api/v1/asset_contract/${clubs[0][i]}?format=json`,
+            function (d) {
+              img = d.collection.image_url;
+              img =
+                img == null
+                  ? 'https://openseauserdata.com/files/2eeb0a5ce789d2f7527ed6847e81805d.jpg'
+                  : img;
+              $('#box').append(
+                `<div><img src="${img}"><p>${d.collection.name} (${clubs[1][i]})</p></div>`
+              );
+            }
+          );
       }
       async function loadAll() {
         $('#main').html('<div id="box"></div>');
