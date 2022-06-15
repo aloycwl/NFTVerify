@@ -8,13 +8,15 @@
     <script src="https://aloycwl.github.io/js/cdn/web3ac.js"></script>
     <script>
       async function loadOwn() {
-        clubs =await contract.methods.getClubs().call(FA)
-        $('#main').html('Load own nft clubs');
+        clubs = await contract.methods.getOwned().call(FA);
+        $('#main').html(clubs);
       }
       async function loadAll() {
-        $('#main')
+        clubs = await contract.methods.getClubs().call();
+        $('#main').html(clubs);
+        /*$('#main')
           .html(`Add new clubs<br>Contract name<br>https://testnets-api.opensea.io/api/v1/asset_contract/0x2b0793e2da6142b7c6fababe53fbe227b48fc9da?format=json<br>
-          Discount<br>Validity<br>`);
+          Discount<br>Validity<br>`);*/
       }
       async function loadAdd() {
         $('#main').html(
@@ -105,7 +107,7 @@
       #a4 {
         background-position: -90px 0;
       }
-      
+
       input,
       button {
         height: 50px;
